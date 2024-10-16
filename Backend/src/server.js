@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://rb3cp4ms-5173.uks1.devtunnels.ms"],
+  origin: ["http://localhost:5173", "http://localhost:80"],
   credentials: true,
 }));
 

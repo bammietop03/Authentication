@@ -21,6 +21,7 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
     - name: Build the Docker image
+      working-directory: ./Authentication
       run: docker compose build
 
     - name: Push to Docker Hub

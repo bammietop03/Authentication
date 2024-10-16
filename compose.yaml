@@ -8,6 +8,8 @@ services:
       - "5173:5173"
     env_file:
       - ./frontend/.env
+    environment:
+      - VITE_SERVER_URL=${VITE_SERVER_URL}
     depends_on:
       - backend
     restart: always
@@ -19,6 +21,15 @@ services:
       - "5000:5000"
     env_file:
       - ./backend/.env
+    environment:
+      - DB_URL=${DB_URL}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - SECRET_KEY=${SECRET_KEY}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
     restart: always
 
   # db:
@@ -41,19 +52,19 @@ services:
   #     - "8080:8080" # Adminer port
   #   restart: always
 
-  proxy_manager:
-    image: jc21/nginx-proxy-manager:latest
-    container_name: proxy_manager
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8090:81" # Proxy Manager UI port
-    volumes:
-      - proxy_manager_data:/data
-      - proxy_manager_letsencrypt:/etc/letsencrypt
-    restart: always
+  # proxy_manager:
+  #   image: jc21/nginx-proxy-manager:latest
+  #   container_name: proxy_manager
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #     - "8090:81" # Proxy Manager UI port
+  #   volumes:
+  #     - proxy_manager_data:/data
+  #     - proxy_manager_letsencrypt:/etc/letsencrypt
+  #   restart: always
 
-volumes:
-  # postgres_data:
-  proxy_manager_data:
-  proxy_manager_letsencrypt:
+# volumes:
+#   # postgres_data:
+#   proxy_manager_data:
+#   proxy_manager_letsencrypt:
